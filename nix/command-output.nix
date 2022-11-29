@@ -5,13 +5,13 @@ with lib;
     name = mkOption {
       default = name;
       type = types.str;
-      description = "Name of the Command Output.";
+      description = lib.mdDoc "Name of the Command Output.";
     };
 
     script = mkOption {
       default = null;
       type = types.nullOr types.str;
-      description = ''
+      description = lib.mdDoc ''
         Text of a script which will produce a JSON value.
         Warning: This uses shell features and is potentially dangerous.
         Environment variables:
@@ -22,7 +22,7 @@ with lib;
     value = mkOption {
       default = null;
       type = types.nullOr types.str;
-      description = "Result of running script.";
+      description = lib.mdDoc "Result of running script.";
     };
   };
   config = {

@@ -8,7 +8,7 @@ let
        example = "secret.txt";
        default = name;
        type = types.str;
-       description = ''
+       description = lib.mdDoc ''
          The name of the key file.
        '';
      };
@@ -17,7 +17,7 @@ let
       example = "super secret stuff";
       default = null;
       type = types.nullOr types.str;
-      description = ''
+      description = lib.mdDoc ''
         When non-null, this designates the text that the key should contain. So if
         the key name is ``password`` and
         ``foobar`` is set here, the contents of the file
@@ -33,7 +33,7 @@ let
       default = null;
       example = [ "pass" "show" "secrettoken" ];
       type = types.nullOr (types.listOf types.str);
-      description = ''
+      description = lib.mdDoc ''
         When non-null, output of this command run on local machine will be
         deployed to the specified key on the target machine.  If the key name
         is
@@ -55,7 +55,7 @@ let
       default = null;
       type = types.nullOr types.path;
       apply = value: if value == null then null else toString value;
-      description = ''
+      description = lib.mdDoc ''
         When non-null, contents of the specified file will be deployed to the
         specified key on the target machine.  If the key name is
         ``password`` and ``/foo/bar`` is set
@@ -75,7 +75,7 @@ let
     options.destDir = mkOption {
       default = "/run/keys";
       type = types.path;
-      description = ''
+      description = lib.mdDoc ''
         When specified, this allows changing the destDir directory of the key
         file from its default value of ``/run/keys``.
 
@@ -88,7 +88,7 @@ let
       type = types.path;
       default = "${config.destDir}/${config.name}";
       internal = true;
-      description = ''
+      description = lib.mdDoc ''
         Path to the destination of the file, a shortcut to
         ``destDir`` + / + ``name``
 
@@ -100,7 +100,7 @@ let
     options.user = mkOption {
       default = "root";
       type = types.str;
-      description = ''
+      description = lib.mdDoc ''
         The user which will be the owner of the key file.
       '';
     };
@@ -108,7 +108,7 @@ let
     options.group = mkOption {
       default = "root";
       type = types.str;
-      description = ''
+      description = lib.mdDoc ''
         The group that will be set for the key file.
       '';
     };
@@ -117,7 +117,7 @@ let
       default = "0600";
       example = "0640";
       type = types.str;
-      description = ''
+      description = lib.mdDoc ''
         The default permissions to set for the key file, needs to be in the
         format accepted by ``chmod(1)``.
       '';
@@ -156,7 +156,7 @@ in
       type = types.attrsOf keyType;
       apply = mapAttrs convertOldKeyType;
 
-      description = ''
+      description = lib.mdDoc ''
 
         The set of keys to be deployed to the machine.  Each attribute maps
         a key name to a file that can be accessed as

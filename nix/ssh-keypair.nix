@@ -9,13 +9,13 @@ with lib;
     publicKey = mkOption {
       default = "";
       type = types.str;
-      description = "The generated public SSH key.";
+      description = lib.mdDoc "The generated public SSH key.";
     };
 
     privateKey = mkOption {
       default = "";
       type = types.str;
-      description = "The generated private key.";
+      description = lib.mdDoc "The generated private key.";
     };
 
   };
